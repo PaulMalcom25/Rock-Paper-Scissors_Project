@@ -2,38 +2,77 @@
 <html>
     <head>
         <script>
+            let resultTracker;
             function computerPlay (playerSelection, computerSelection) {
             let keyWords = ['rock', 'paper', 'scissors'];
             let randomWord = keyWords[Math.floor(Math.random() * keyWords.length )];
             computerSelection = randomWord;
             let userSelection = prompt('Choose either Rock, Paper or Scissors. Roll the dice!');
             playerSelection = userSelection.toLowerCase();
-            // if statements for when the user enters rock as their choice
+           let outcome;
             if (playerSelection === 'rock' && computerSelection === 'paper') {
-                alert('You lose! Paper beats Rock.');
+                outcome= 'You lose! Paper beats Rock.';
+                resultTracker = 'loss';
             } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-                alert('You win! Rock beats Scissors.');         
+                outcome = 'You win! Rock beats Scissors.';   
+                resultTracker = 'win';      
             } else if (playerSelection === 'rock' && computerSelection === 'rock') {
-                alert('Draw! Rock can\'t beat Rock.');         
-            } 
-            // if statements for when the user enters paper as their choice
-            if (playerSelection === 'paper' && computerSelection === 'rock') {
-                alert('You win! Paper beats Rock.');
+                outcome = 'Draw! Rock can\'t beat Rock.';    
+                resultTracker = 'draw';     
+            } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+                outcome = 'You win! Paper beats Rock.';
+                resultTracker = 'win';
             } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-                alert('You lose! Scissors beats Paper.');         
+                outcome = 'You lose! Scissors beats Paper.';  
+                resultTracker = 'loss';       
             } else if (playerSelection === 'paper' && computerSelection === 'paper') {
-                alert('Draw! Paper can\'t beat Paper.');         
-            }
-            // if statements for when the user enters scissors as their choice
-            if (playerSelection === 'scissors' && computerSelection === 'rock') {
-                alert('You lose! Rock beats Scissors.');
+                outcome = 'Draw! Paper can\'t beat Paper.'; 
+                resultTracker = 'draw';        
+            } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+                outcome = 'You lose! Rock beats Scissors.';
+                resultTracker = 'loss';
             } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-                alert('You win! Scissors beats Paper.');         
-            } else if (playerSelection === 'scissors' && computerSelection === 'sciddors') {
-                alert('Draw! Scissors can\'t beat Scissors.');         
+                outcome = 'You win! Scissors beats Paper.';  
+                resultTracker = 'win';       
+            } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
+                outcome = 'Draw! Scissors can\'t beat Scissors.';  
+                resultTracker = 'draw';       
             }  
+            return outcome;
             }
-            computerPlay();
+            let playRound = computerPlay;
+            function game () {
+                let score = 0;
+                console.log( playRound() );
+                if (resultTracker === 'win') {
+                    ++score
+                } 
+                console.log( playRound() );
+                if (resultTracker === 'win') {
+                    ++score
+                } 
+                console.log( playRound() );
+                if (resultTracker === 'win') {
+                    ++score
+                } 
+                console.log( playRound() );
+                if (resultTracker === 'win') {
+                    ++score
+                } 
+                console.log( playRound() );
+                if (resultTracker === 'win') {
+                    ++score
+                }
+                let finalResult; 
+                if ( score >= 3) {
+                    finalResult = 'Game over. Congs, you win!';
+                } else {
+                    finalResult = 'Game over. Sorry, you lose.';
+                }
+                return finalResult;
+                
+            }
+            console.log(game());
             
 
         </script>
